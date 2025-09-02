@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hausa Medical Glossary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    input, select {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+      cursor: pointer;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #ddd;
+    }
+    mark {
+      background-color: yellow;
+    }
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      th {
+        position: sticky;
+        top: 0;
+        background-color: #4CAF50;
+      }
+      td {
+        padding-left: 50%;
+        position: relative;
+      }
+      td::before {
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+      td:nth-of-type(1)::before { content: "English"; }
+      td:nth-of-type(2)::before { content: "Definition (English)"; }
+      td:nth-of-type(3)::before { content: "Definition (Hausa)"; }
+      td:nth-of-type(4)::before { content: "Hausa"; }
+      td:nth-of-type(5)::before { content: "Code (Region)"; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Hausa Medical Glossary</h1>
+
+  <div id="controls">
+    <input type="text" id="searchInput" placeholder="Type to search...">
+    <select id="regionFilter">
+      <option value="">All Categories</option>
+    </select>
+  </div>
+
+  <table id="glossaryTable">
+    <thead>
+      <tr>
+        <th data-column="English">English</th>
+        <th data-column="Definition (English)">Definition (English)</th>
+        <th data-column="Definition(Hausa)">Definition (Hausa)</th>
+        <th data-column="Hausa">Hausa</th>
+        <th data-column="Code (Region)">Code (Region)</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script>
+    const tableBody = document.querySelector('#glossaryTable tbody');
+    const searchInput = document.getElementById('searchInput');
+    const regionFilter = document.getElementById('regionFilter');
+    const headers = document.querySelectorAll('#glossaryTable th');
+    let glossaryData = [];
+    let sortColumn = null;
+    let sortAscending = true;
+
+    // Load CSV
+    Papa.parse('hausamedicalterms.csv', {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        glossaryData = results.data;
+        populateRegionFilter(glossaryData);
+        displayTable(glossaryData);
+      }
+    });
+
+    // Populate category dropdown
+    function populateRegionFilter(data) {
+      const regions = Array.from(new Set(data.map(row => row['Code (Region)']).filter(Boolean))).sort();
+      regions.forEach(region => {
+        const option = document.createElement('option');
+        option.value = region;
+        option.textContent = region;
+        regionFilter.appendChild(option);
+      });
+    }
+
+    // Highlight search matches
+    function highlightText(text, term) {
+      if (!text || !term) return text || '';
+      const regex = new RegExp(`(${term})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    // Display table with filtering, sorting, and highlighting
+    function displayTable(data) {
+      const filterText = searchInput.value.toLowerCase();
+      const filterRegion = regionFilter.value;
+
+      let filteredData = data.filter(row => {
+        const combinedText = Object.values(row).join(' ').toLowerCase();
+        return (filterText === '' || combinedText.includes(filterText)) &&
+               (filterRegion === '' || row['Code (Region)'] === filterRegion);
+      });
+
+      if (sortColumn) {
+        filteredData.sort((a, b) => {
+          const valA = (a[sortColumn] || '').toLowerCase();
+          const valB = (b[sortColumn] || '').toLowerCase();
+          if (valA < valB) return sortAscending ? -1 : 1;
+          if (valA > valB) return sortAscending ? 1 : -1;
+          return 0;
+        });
+      }
+
+      tableBody.innerHTML = '';
+      filteredData.forEach(row => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${highlightText(row['English'], filterText)}</td>
+          <td>${highlightText(row['Definition (English)'], filterText)}</td>
+          <td>${highlightText(row['Definition(Hausa)'], filterText)}</td>
+          <td>${highlightText(row['Hausa'], filterText)}</td>
+          <td>${highlightText(row['Code (Region)'], filterText)}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+
+    // Event listeners
+    searchInput.addEventListener('input', () => displayTable(glossaryData));
+    regionFilter.addEventListener('change', () => displayTable(glossaryData));
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const column = header.dataset.column;
+        if (sortColumn === column) {
+          sortAscending = !sortAscending;
+        } else {
+          sortColumn = column;
+          sortAscending = true;
+        }
+        displayTable(glossaryData);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -14,13 +14,19 @@
       color: #222;
     }
 
+    /* Mustard yellow header */
     header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      background-color: rgba(255, 255, 255, 0.85);
-      padding: 15px;
+      justify-content: space-between;
+      background-color: #ffcc33;
+      padding: 15px 30px;
       border-bottom: 2px solid #4CAF50;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
     }
 
     header img {
@@ -29,17 +35,37 @@
     }
 
     header h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin: 0;
       color: #2c3e50;
       font-weight: bold;
     }
 
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    nav button.active, nav button:hover {
+      background-color: #4CAF50;
+      color: white;
+    }
+
     main {
       max-width: 900px;
-      margin: 50px auto;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, 0.9);
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
       box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
       text-align: center;
@@ -67,12 +93,6 @@
 
     .button:hover {
       background-color: #45a049;
-    }
-
-    /* Glossary view hidden initially */
-    #glossaryView {
-      display: none;
-      text-align: left;
     }
 
     #controls {
@@ -120,25 +140,48 @@
     mark {
       background-color: yellow;
     }
+
+    /* Sections hidden by default */
+    .section {
+      display: none;
+    }
+
+    .active-section {
+      display: block;
+    }
+
+    /* "No results" styling */
+    .no-results {
+      color: red;
+      font-weight: bold;
+      margin: 20px 0;
+    }
   </style>
 </head>
 <body>
   <header>
-    <img src="hausa logo.png" alt="Hausa Logo">
-    <h1>Hausa Medical Glossary</h1>
+    <div class="logo">
+      <img src="hausa logo.png" alt="Hausa Logo">
+      <h1>Hausa Medical Glossary</h1>
+    </div>
+    <nav>
+      <button onclick="switchSection('home')" id="homeTab" class="active">Home</button>
+      <button onclick="switchSection('glossary')" id="glossaryTab">Glossary</button>
+      <button onclick="switchSection('resources')" id="resourcesTab">Resources</button>
+    </nav>
   </header>
 
   <main>
-    <!-- Landing Page -->
-    <div id="landingView">
+    <!-- Home -->
+    <div id="home" class="section active-section">
       <h2>Search Hausa Medical Terms</h2>
       <input type="text" id="landingSearch" class="search-box" placeholder="Type to search...">
       <br>
-      <button class="button" onclick="showGlossary()">See Full Glossary</button>
+      <button class="button" onclick="showGlossary()">Search Glossary</button>
     </div>
 
-    <!-- Glossary Page -->
-    <div id="glossaryView">
+    <!-- Glossary -->
+    <div id="glossary" class="section">
       <div id="controls">
         <input type="text" id="searchInput" placeholder="Type to search...">
         <select id="regionFilter">
@@ -158,6 +201,14 @@
         </thead>
         <tbody></tbody>
       </table>
+
+      <div id="noResults" class="no-results" style="display:none;">No matching terms found.</div>
+    </div>
+
+    <!-- Resources -->
+    <div id="resources" class="section">
+      <h2>Resources</h2>
+      <p>Downloadable posters and learning materials will be available here soon.</p>
     </div>
   </main>
 
@@ -168,6 +219,8 @@
     const landingSearch = document.getElementById('landingSearch');
     const regionFilter = document.getElementById('regionFilter');
     const headers = document.querySelectorAll('#glossaryTable th');
+    const noResults = document.getElementById('noResults');
+
     let glossaryData = [];
     let sortColumn = null;
     let sortAscending = true;
@@ -200,15 +253,21 @@
     }
 
     function displayTable(data) {
-      const filterText = searchInput.value.toLowerCase() || landingSearch.value.toLowerCase();
+      const filterText = (searchInput.value || landingSearch.value).toLowerCase();
       const filterRegion = regionFilter.value;
 
       let filteredData = data.filter(row => {
-        const combinedText = Object.values(row).join(' ').toLowerCase();
-        return (filterText === '' || combinedText.includes(filterText)) &&
-               (filterRegion === '' || row['Code (Region)'] === filterRegion);
+        const english = (row['English'] || '').toLowerCase();
+        const hausa = (row['Hausa'] || '').toLowerCase();
+        const combined = Object.values(row).join(' ').toLowerCase();
+
+        return (
+          (filterText === '' || english.includes(filterText) || hausa.includes(filterText) || combined.includes(filterText)) &&
+          (filterRegion === '' || row['Code (Region)'] === filterRegion)
+        );
       });
 
+      // sort if needed
       if (sortColumn) {
         filteredData.sort((a, b) => {
           const valA = (a[sortColumn] || '').toLowerCase();
@@ -220,6 +279,12 @@
       }
 
       tableBody.innerHTML = '';
+      if (filteredData.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+
       filteredData.forEach(row => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -233,15 +298,25 @@
       });
     }
 
+    // Switch between sections
+    function switchSection(sectionId) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+      document.getElementById(sectionId).classList.add('active-section');
+
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(sectionId + 'Tab').classList.add('active');
+    }
+
+    // When search from landing page
     function showGlossary() {
-      document.getElementById('landingView').style.display = 'none';
-      document.getElementById('glossaryView').style.display = 'block';
-      searchInput.value = landingSearch.value; // pass the search term forward
+      switchSection('glossary');
+      searchInput.value = landingSearch.value;
       displayTable(glossaryData);
     }
 
+    // Events
     searchInput.addEventListener('input', () => displayTable(glossaryData));
-    landingSearch.addEventListener('input', () => showGlossary());
+    landingSearch.addEventListener('keypress', (e) => { if (e.key === 'Enter') showGlossary(); });
     regionFilter.addEventListener('change', () => displayTable(glossaryData));
 
     headers.forEach(header => {
@@ -259,4 +334,5 @@
   </script>
 </body>
 </html>
+
 

@@ -7,58 +7,102 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      background: url('hausa background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #222;
     }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
+
+    /* Header with logo */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 15px;
+      border-bottom: 2px solid #4CAF50;
     }
+
+    header img {
+      height: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+    }
+
     #controls {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 20px;
     }
+
     input, select {
       padding: 10px;
       font-size: 16px;
-      border-radius: 5px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      width: 100%;
+      flex: 1;
+      min-width: 200px;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
     }
+
     th, td {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 10px;
       text-align: left;
-      cursor: pointer;
     }
+
     th {
       background-color: #4CAF50;
       color: white;
+      cursor: pointer;
     }
+
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #f9f9f9;
     }
+
     tr:hover {
-      background-color: #ddd;
+      background-color: #f1f1f1;
     }
+
     mark {
       background-color: yellow;
     }
+
+    /* Responsive adjustments */
     @media (max-width: 600px) {
+      #controls {
+        flex-direction: column;
+      }
+
       table, thead, tbody, th, td, tr {
         display: block;
       }
       th {
         position: sticky;
         top: 0;
-        background-color: #4CAF50;
       }
       td {
         padding-left: 50%;
@@ -80,27 +124,32 @@
   </style>
 </head>
 <body>
-  <h1>Hausa Medical Glossary</h1>
+  <header>
+    <img src="hausa logo.png" alt="Hausa Logo">
+    <h1>Hausa Medical Glossary</h1>
+  </header>
 
-  <div id="controls">
-    <input type="text" id="searchInput" placeholder="Type to search...">
-    <select id="regionFilter">
-      <option value="">All Categories</option>
-    </select>
-  </div>
+  <main>
+    <div id="controls">
+      <input type="text" id="searchInput" placeholder="Type to search...">
+      <select id="regionFilter">
+        <option value="">All Categories</option>
+      </select>
+    </div>
 
-  <table id="glossaryTable">
-    <thead>
-      <tr>
-        <th data-column="English">English</th>
-        <th data-column="Definition (English)">Definition (English)</th>
-        <th data-column="Definition(Hausa)">Definition (Hausa)</th>
-        <th data-column="Hausa">Hausa</th>
-        <th data-column="Code (Region)">Code (Region)</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <table id="glossaryTable">
+      <thead>
+        <tr>
+          <th data-column="English">English</th>
+          <th data-column="Definition (English)">Definition (English)</th>
+          <th data-column="Definition(Hausa)">Definition (Hausa)</th>
+          <th data-column="Hausa">Hausa</th>
+          <th data-column="Code (Region)">Code (Region)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
@@ -112,7 +161,6 @@
     let sortColumn = null;
     let sortAscending = true;
 
-    // Load CSV
     Papa.parse('hausamedicalterms.csv', {
       download: true,
       header: true,
@@ -124,7 +172,6 @@
       }
     });
 
-    // Populate category dropdown
     function populateRegionFilter(data) {
       const regions = Array.from(new Set(data.map(row => row['Code (Region)']).filter(Boolean))).sort();
       regions.forEach(region => {
@@ -135,14 +182,12 @@
       });
     }
 
-    // Highlight search matches
     function highlightText(text, term) {
       if (!text || !term) return text || '';
       const regex = new RegExp(`(${term})`, 'gi');
       return text.replace(regex, '<mark>$1</mark>');
     }
 
-    // Display table with filtering, sorting, and highlighting
     function displayTable(data) {
       const filterText = searchInput.value.toLowerCase();
       const filterRegion = regionFilter.value;
@@ -177,7 +222,6 @@
       });
     }
 
-    // Event listeners
     searchInput.addEventListener('input', () => displayTable(glossaryData));
     regionFilter.addEventListener('change', () => displayTable(glossaryData));
 
@@ -196,3 +240,4 @@
   </script>
 </body>
 </html>
+

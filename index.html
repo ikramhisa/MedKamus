@@ -35,32 +35,44 @@
       font-weight: bold;
     }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #4CAF50;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      padding: 14px 20px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    nav button.active {
-      background: #2e7d32;
-    }
-
     main {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 20px;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
       box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .search-box {
+      width: 80%;
+      max-width: 500px;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+
+    /* Glossary view hidden initially */
+    #glossaryView {
+      display: none;
+      text-align: left;
     }
 
     #controls {
@@ -68,16 +80,15 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-bottom: 20px;
-      justify-content: center;
     }
 
     input, select {
-      padding: 12px;
-      font-size: 18px;
+      padding: 10px;
+      font-size: 16px;
       border-radius: 8px;
       border: 1px solid #ccc;
       flex: 1;
-      min-width: 250px;
+      min-width: 200px;
     }
 
     table {
@@ -109,42 +120,6 @@
     mark {
       background-color: yellow;
     }
-
-    .tab-content {
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      #controls {
-        flex-direction: column;
-      }
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      th {
-        position: sticky;
-        top: 0;
-      }
-      td {
-        padding-left: 50%;
-        position: relative;
-      }
-      td::before {
-        position: absolute;
-        left: 10px;
-        width: 45%;
-        white-space: nowrap;
-        font-weight: bold;
-      }
-      td:nth-of-type(1)::before { content: "English"; }
-      td:nth-of-type(2)::before { content: "Definition (English)"; }
-      td:nth-of-type(3)::before { content: "Definition (Hausa)"; }
-      td:nth-of-type(4)::before { content: "Hausa"; }
-      td:nth-of-type(5)::before { content: "Code (Region)"; }
-    }
   </style>
 </head>
 <body>
@@ -153,24 +128,19 @@
     <h1>Hausa Medical Glossary</h1>
   </header>
 
-  <nav>
-    <button class="tab-btn active" data-tab="searchTab">Search</button>
-    <button class="tab-btn" data-tab="glossaryTab">Glossary</button>
-  </nav>
-
   <main>
-    <!-- Search tab -->
-    <div id="searchTab" class="tab-content active">
-      <div id="controls">
-        <input type="text" id="searchInput" placeholder="Type to search...">
-      </div>
-      <p style="text-align:center; color:#555;">Search medical terms in Hausa and English. Click "Glossary" to view full table.</p>
+    <!-- Landing Page -->
+    <div id="landingView">
+      <h2>Search Hausa Medical Terms</h2>
+      <input type="text" id="landingSearch" class="search-box" placeholder="Type to search...">
+      <br>
+      <button class="button" onclick="showGlossary()">See Full Glossary</button>
     </div>
 
-    <!-- Glossary tab -->
-    <div id="glossaryTab" class="tab-content">
+    <!-- Glossary Page -->
+    <div id="glossaryView">
       <div id="controls">
-        <input type="text" id="searchInputGlossary" placeholder="Type to search...">
+        <input type="text" id="searchInput" placeholder="Type to search...">
         <select id="regionFilter">
           <option value="">All Categories</option>
         </select>
@@ -194,14 +164,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
     const tableBody = document.querySelector('#glossaryTable tbody');
-    const searchInputGlossary = document.getElementById('searchInputGlossary');
+    const searchInput = document.getElementById('searchInput');
+    const landingSearch = document.getElementById('landingSearch');
     const regionFilter = document.getElementById('regionFilter');
     const headers = document.querySelectorAll('#glossaryTable th');
     let glossaryData = [];
     let sortColumn = null;
     let sortAscending = true;
 
-    // CSV load
     Papa.parse('hausamedicalterms.csv', {
       download: true,
       header: true,
@@ -230,7 +200,7 @@
     }
 
     function displayTable(data) {
-      const filterText = searchInputGlossary.value.toLowerCase();
+      const filterText = searchInput.value.toLowerCase() || landingSearch.value.toLowerCase();
       const filterRegion = regionFilter.value;
 
       let filteredData = data.filter(row => {
@@ -263,7 +233,15 @@
       });
     }
 
-    searchInputGlossary.addEventListener('input', () => displayTable(glossaryData));
+    function showGlossary() {
+      document.getElementById('landingView').style.display = 'none';
+      document.getElementById('glossaryView').style.display = 'block';
+      searchInput.value = landingSearch.value; // pass the search term forward
+      displayTable(glossaryData);
+    }
+
+    searchInput.addEventListener('input', () => displayTable(glossaryData));
+    landingSearch.addEventListener('input', () => showGlossary());
     regionFilter.addEventListener('change', () => displayTable(glossaryData));
 
     headers.forEach(header => {
@@ -278,20 +256,7 @@
         displayTable(glossaryData);
       });
     });
-
-    // Tab switching
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabButtons.forEach(b => b.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
-
-        btn.classList.add('active');
-        document.getElementById(btn.dataset.tab).classList.add('active');
-      });
-    });
   </script>
 </body>
 </html>
+

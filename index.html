@@ -237,7 +237,7 @@
     });
 
     function populateRegionFilter(data) {
-      const regions = Array.from(new Set(data.map(row => row['Code (Region)']).filter(Boolean))).sort();
+      const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
       regions.forEach(region => {
         const option = document.createElement('option');
         option.value = region;
@@ -292,7 +292,7 @@
           <td>${highlightText(row['Definition (English)'], filterText)}</td>
           <td>${highlightText(row['Definition(Hausa)'], filterText)}</td>
           <td>${highlightText(row['Hausa'], filterText)}</td>
-          <td>${highlightText(row['Code (Region)'], filterText)}</td>
+          <td>${highlightText(row['Region'], filterText)}</td>
         `;
         tableBody.appendChild(tr);
       });
@@ -334,6 +334,7 @@
   </script>
 </body>
 </html>
+
 
 
 

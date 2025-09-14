@@ -14,7 +14,6 @@
       color: #222;
     }
 
-    /* Mustard yellow header */
     header {
       display: flex;
       align-items: center;
@@ -141,7 +140,6 @@
       background-color: yellow;
     }
 
-    /* Sections hidden by default */
     .section {
       display: none;
     }
@@ -150,12 +148,35 @@
       display: block;
     }
 
-    /* "No results" styling */
     .no-results {
       color: red;
       font-weight: bold;
       margin: 20px 0;
     }
+
+    .about-section {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .about-section h3 {
+      margin-top: 20px;
+      color: #2c3e50;
+    }
+
+    .creator {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+    }
+
+    .creator img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -168,6 +189,7 @@
       <button onclick="switchSection('home')" id="homeTab" class="active">Home</button>
       <button onclick="switchSection('glossary')" id="glossaryTab">Glossary</button>
       <button onclick="switchSection('resources')" id="resourcesTab">Resources</button>
+      <button onclick="switchSection('about')" id="aboutTab">About</button>
     </nav>
   </header>
 
@@ -197,6 +219,7 @@
             <th data-column="Definition(Hausa)">Definition (Hausa)</th>
             <th data-column="Hausa">Hausa</th>
             <th data-column="Region">Region</th>
+            <th data-column="Ontology Links">Ontology Links</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -209,6 +232,26 @@
     <div id="resources" class="section">
       <h2>Resources</h2>
       <p>Downloadable posters and learning materials will be available here soon.</p>
+    </div>
+
+    <!-- About -->
+    <div id="about" class="section">
+      <h2>About</h2>
+      <div class="about-section">
+        <p>This website was created to make <strong>medical terminology accessible in Hausa</strong>, so that Hausa-speaking communities can better understand, learn, and use health information. Clear and accurate terminology is essential for effective communication in healthcare for patients, students, and professionals.</p>
+
+        <h3>What are Ontologies?</h3>
+        <p>An ontology is a <strong>structured framework</strong> that defines concepts and the relationships between them, so knowledge can be shared and used consistently.</p>
+
+        <h3>Why We Use Ontologies</h3>
+        <p>By using ontologies, this website makes information <strong>organized, searchable, and consistent</strong>. They provide a common definition of terms, ensuring clarity and consensus about what each term means and what it refers to. This consistency makes it simpler for others to contribute, share, and expand the knowledge base.</p>
+
+        <h3>Meet the Creator</h3>
+        <div class="creator">
+          <img src="ikram_profile.jpeg" alt="Ikram Isa">
+          <p>This project was started by <strong>Ikram Isa</strong>, a biomedical engineer and medical physiology student passionate about bridging gaps in healthcare knowledge. By combining medical science with accessible language tools, the aim is to make health information clearer and more useful for Hausa-speaking communities.</p>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -252,6 +295,15 @@
       return text.replace(regex, '<mark>$1</mark>');
     }
 
+    function formatOntologyLink(url) {
+      if (!url) return '';
+      const match = url.match(/obo\/([A-Z]+)_(\d+)/);
+      if (match) {
+        return `<a href="${url}" target="_blank">${match[1]}:${match[2]}</a>`;
+      }
+      return `<a href="${url}" target="_blank">${url}</a>`;
+    }
+
     function displayTable(data) {
       const filterText = (searchInput.value || landingSearch.value).toLowerCase();
       const filterRegion = regionFilter.value;
@@ -263,11 +315,10 @@
 
         return (
           (filterText === '' || english.includes(filterText) || hausa.includes(filterText) || combined.includes(filterText)) &&
-          (filterRegion === '' || row['Code (Region)'] === filterRegion)
+          (filterRegion === '' || row['Region'] === filterRegion)
         );
       });
 
-      // sort if needed
       if (sortColumn) {
         filteredData.sort((a, b) => {
           const valA = (a[sortColumn] || '').toLowerCase();
@@ -293,12 +344,12 @@
           <td>${highlightText(row['Definition(Hausa)'], filterText)}</td>
           <td>${highlightText(row['Hausa'], filterText)}</td>
           <td>${highlightText(row['Region'], filterText)}</td>
+          <td>${formatOntologyLink(row['Ontology Links'])}</td>
         `;
         tableBody.appendChild(tr);
       });
     }
 
-    // Switch between sections
     function switchSection(sectionId) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
       document.getElementById(sectionId).classList.add('active-section');
@@ -307,14 +358,12 @@
       document.getElementById(sectionId + 'Tab').classList.add('active');
     }
 
-    // When search from landing page
     function showGlossary() {
       switchSection('glossary');
       searchInput.value = landingSearch.value;
       displayTable(glossaryData);
     }
 
-    // Events
     searchInput.addEventListener('input', () => displayTable(glossaryData));
     landingSearch.addEventListener('keypress', (e) => { if (e.key === 'Enter') showGlossary(); });
     regionFilter.addEventListener('change', () => displayTable(glossaryData));

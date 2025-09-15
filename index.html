@@ -155,8 +155,6 @@
 
     .creator { display: flex; align-items: center; margin-top: 15px; }
     .creator img { width: 120px; height: 120px; border-radius: 50%; margin-right: 20px; }
-
-    #termDetail { display: none; text-align: left; }
   </style>
 </head>
 <body>
@@ -166,10 +164,10 @@
       <h1>Hausa Medical Glossary</h1>
     </div>
     <nav>
-      <button onclick="switchSection('home')" id="homeTab" class="active">Home</button>
-      <button onclick="switchSection('glossary')" id="glossaryTab">Glossary</button>
-      <button onclick="switchSection('resources')" id="resourcesTab">Resources</button>
-      <button onclick="switchSection('about')" id="aboutTab">About</button>
+      <button id="homeTab" class="active">Home</button>
+      <button id="glossaryTab">Glossary</button>
+      <button id="resourcesTab">Resources</button>
+      <button id="aboutTab">About</button>
     </nav>
   </header>
 
@@ -179,7 +177,7 @@
       <h2>Search Hausa Medical Terms</h2>
       <input type="text" id="landingSearch" class="search-box" placeholder="Type to search...">
       <br>
-      <button class="button" onclick="showGlossary()">Search Glossary</button>
+      <button class="button" id="landingSearchBtn">Search Glossary</button>
     </div>
 
     <!-- Glossary -->
@@ -206,12 +204,6 @@
       </table>
 
       <div id="noResults" class="no-results" style="display:none;">No matching terms found.</div>
-    </div>
-
-    <!-- Term Detail -->
-    <div id="termDetail" class="section">
-      <div id="termContent"></div>
-      <button class="button" onclick="backToGlossary()">Back to Glossary</button>
     </div>
 
     <!-- Resources -->
@@ -243,101 +235,89 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script>
-    const tableBody = document.querySelector('#glossaryTable tbody');
-    const searchInput = document.getElementById('searchInput');
-    const landingSearch = document.getElementById('landingSearch');
-    const regionFilter = document.getElementById('regionFilter');
-    const headers = document.querySelectorAll('#glossaryTable th');
-    const noResults = document.getElementById('noResults');
+    document.addEventListener("DOMContentLoaded", () => {
+      const tableBody = document.querySelector('#glossaryTable tbody');
+      const searchInput = document.getElementById('searchInput');
+      const landingSearch = document.getElementById('landingSearch');
+      const landingSearchBtn = document.getElementById('landingSearchBtn');
+      const regionFilter = document.getElementById('regionFilter');
+      const headers = document.querySelectorAll('#glossaryTable th');
+      const noResults = document.getElementById('noResults');
 
-    let glossaryData = [];
-    let sortColumn = null;
-    let sortAscending = true;
+      let glossaryData = [];
+      let sortColumn = null;
+      let sortAscending = true;
 
-    Papa.parse('hausamedicalterms.csv', {
-      download: true,
-      header: true,
-      skipEmptyLines: true,
-      complete: function(results) {
-        glossaryData = results.data;
-        populateRegionFilter(glossaryData);
+      // Section switching
+      function switchSection(sectionId) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+        document.getElementById(sectionId).classList.add('active-section');
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(sectionId + "Tab").classList.add('active');
+      }
+
+      // Glossary search from landing page
+      function showGlossary() {
+        switchSection('glossary');
         displayTable(glossaryData);
       }
-    });
 
-    function switchSection(sectionId) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
-      document.getElementById(sectionId).classList.add('active-section');
-
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(sectionId + "Tab").classList.add('active');
-    }
-
-    function populateRegionFilter(data) {
-      const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
-      regions.forEach(region => {
-        const option = document.createElement('option');
-        option.value = region;
-        option.textContent = region;
-        regionFilter.appendChild(option);
-      });
-    }
-
-    function highlightText(text, term) {
-      if (!text || !term) return text || '';
-      const regex = new RegExp(`(${term})`, 'gi');
-      return text.replace(regex, '<mark>$1</mark>');
-    }
-
-    function formatOntologyLink(url) {
-      if (!url) return '';
-      const match = url.match(/obo\/([A-Z]+)_(\d+)/);
-      if (match) return `<a href="${url}" target="_blank">${match[1]}:${match[2]}</a>`;
-      return `<a href="${url}" target="_blank">${url}</a>`;
-    }
-
-    function showGlossary() {
-      switchSection('glossary');
-      displayTable(glossaryData);
-    }
-
-    function showTermDetail(row) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
-      document.getElementById('termDetail').classList.add('active-section');
-
-      document.getElementById('termContent').innerHTML = `
-        <h2>${row['English']} (${row['Hausa']})</h2>
-        <p><strong>Definition (English):</strong> ${row['Definition (English)']}</p>
-        <p><strong>Definition (Hausa):</strong> ${row['Definition(Hausa)']}</p>
-        <p><strong>Region:</strong> ${row['Region']}</p>
-        <p><strong>Ontology Link:</strong> ${formatOntologyLink(row['Ontology Links'])}</p>
-      `;
-    }
-
-    function backToGlossary() {
-      switchSection('glossary');
-    }
-
-    function displayTable(data) {
-      const filterText = (searchInput.value || landingSearch.value).toLowerCase();
-      const filterRegion = regionFilter.value;
-
-      let filteredData = data.filter(row => {
-        const english = (row['English'] || '').toLowerCase();
-        const hausa = (row['Hausa'] || '').toLowerCase();
-        const combined = Object.values(row).join(' ').toLowerCase();
-
-        return (
-          (filterText === '' || english.includes(filterText) || hausa.includes(filterText) || combined.includes(filterText)) &&
-          (filterRegion === '' || row['Region'] === filterRegion)
-        );
+      // Load glossary data
+      Papa.parse('hausamedicalterms.csv', {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          glossaryData = results.data;
+          populateRegionFilter(glossaryData);
+          displayTable(glossaryData);
+        }
       });
 
-      tableBody.innerHTML = '';
-      if (filteredData.length === 0) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
+      function populateRegionFilter(data) {
+        const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
+        regions.forEach(region => {
+          const option = document.createElement('option');
+          option.value = region;
+          option.textContent = region;
+          regionFilter.appendChild(option);
+        });
+      }
+
+      function highlightText(text, term) {
+        if (!text || !term) return text || '';
+        const regex = new RegExp(`(${term})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+      }
+
+      function formatOntologyLink(url) {
+        if (!url) return '';
+        const match = url.match(/obo\/([A-Z]+)_(\d+)/);
+        if (match) return `<a href="${url}" target="_blank">${match[1]}:${match[2]}</a>`;
+        return `<a href="${url}" target="_blank">${url}</a>`;
+      }
+
+      function displayTable(data) {
+        const filterText = (searchInput.value || landingSearch.value).toLowerCase();
+        const filterRegion = regionFilter.value;
+
+        let filteredData = data.filter(row => {
+          const combined = Object.values(row).join(' ').toLowerCase();
+          return (
+            (filterText === '' || combined.includes(filterText)) &&
+            (filterRegion === '' || row['Region'] === filterRegion)
+          );
+        });
+
+        tableBody.innerHTML = '';
+
+        if (filteredData.length === 0) {
+          noResults.style.display = 'block';
+          return;
+        } else {
+          noResults.style.display = 'none';
+        }
+
         filteredData.forEach(row => {
           const tr = document.createElement('tr');
           tr.innerHTML = `
@@ -348,18 +328,23 @@
             <td>${row['Region']}</td>
             <td>${formatOntologyLink(row['Ontology Links'])}</td>
           `;
-          tr.onclick = () => showTermDetail(row);
           tableBody.appendChild(tr);
         });
       }
-    }
 
-    // live search
-    searchInput.addEventListener('input', () => displayTable(glossaryData));
-    landingSearch.addEventListener('input', () => displayTable(glossaryData));
-    regionFilter.addEventListener('change', () => displayTable(glossaryData));
+      // Event listeners
+      document.getElementById('homeTab').addEventListener('click', () => switchSection('home'));
+      document.getElementById('glossaryTab').addEventListener('click', () => switchSection('glossary'));
+      document.getElementById('resourcesTab').addEventListener('click', () => switchSection('resources'));
+      document.getElementById('aboutTab').addEventListener('click', () => switchSection('about'));
+      landingSearchBtn.addEventListener('click', showGlossary);
+      searchInput.addEventListener('input', () => displayTable(glossaryData));
+      regionFilter.addEventListener('change', () => displayTable(glossaryData));
+    });
   </script>
 </body>
 </html>
+
+
 
 

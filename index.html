@@ -236,116 +236,92 @@
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const tableBody = document.querySelector('#glossaryTable tbody');
-      const searchInput = document.getElementById('searchInput');
-      const landingSearch = document.getElementById('landingSearch');
-      const landingSearchBtn = document.getElementById('landingSearchBtn');
-      const regionFilter = document.getElementById('regionFilter');
-      const headers = document.querySelectorAll('#glossaryTable th');
-      const noResults = document.getElementById('noResults');
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const tableBody = document.querySelector('#glossaryTable tbody');
+  const searchInput = document.getElementById('searchInput');
+  const landingSearch = document.getElementById('landingSearch');
+  const landingSearchBtn = document.getElementById('landingSearchBtn');
+  const regionFilter = document.getElementById('regionFilter');
+  const noResults = document.getElementById('noResults');
 
-      let glossaryData = [];
-      let sortColumn = null;
-      let sortAscending = true;
+  let glossaryData = [];
 
-      // Section switching
-      function switchSection(sectionId) {
-        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
-        document.getElementById(sectionId).classList.add('active-section');
-        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(sectionId + "Tab").classList.add('active');
-      }
+  // -----------------------------
+  // 1. Put normalizeText here
+  function normalizeText(text) {
+    if (!text) return "";
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "") // strip accents
+      .replace(/ƙ/g, "k")
+      .replace(/ɓ/g, "b")
+      .replace(/ɗ/g, "d");
+  }
+  // -----------------------------
 
-      // Glossary search from landing page
-      function showGlossary() {
-        switchSection('glossary');
-        displayTable(glossaryData);
-      }
+  // Section switch function
+  function switchSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+    document.getElementById(sectionId).classList.add('active-section');
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(sectionId + "Tab").classList.add('active');
+  }
 
-      // Load glossary data
-      Papa.parse('hausamedicalterms.csv', {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-          glossaryData = results.data;
-          populateRegionFilter(glossaryData);
-          displayTable(glossaryData);
-        }
-      });
+  // Show glossary from landing page
+  function showGlossary() {
+    switchSection('glossary');
+    displayTable(glossaryData);
+  }
 
-      function populateRegionFilter(data) {
-        const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
-        regions.forEach(region => {
-          const option = document.createElement('option');
-          option.value = region;
-          option.textContent = region;
-          regionFilter.appendChild(option);
-        });
-      }
+  // Your table filter function
+  function displayTable(data) {
+    const filterText = normalizeText(searchInput.value || landingSearch.value);
+    const filterRegion = regionFilter.value;
 
-      function highlightText(text, term) {
-        if (!text || !term) return text || '';
-        const regex = new RegExp(`(${term})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
-      }
-
-      function formatOntologyLink(url) {
-        if (!url) return '';
-        const match = url.match(/obo\/([A-Z]+)_(\d+)/);
-        if (match) return `<a href="${url}" target="_blank">${match[1]}:${match[2]}</a>`;
-        return `<a href="${url}" target="_blank">${url}</a>`;
-      }
-
-      function displayTable(data) {
-        const filterText = (searchInput.value || landingSearch.value).toLowerCase();
-        const filterRegion = regionFilter.value;
-
-        let filteredData = data.filter(row => {
-          const combined = Object.values(row).join(' ').toLowerCase();
-          return (
-            (filterText === '' || combined.includes(filterText)) &&
-            (filterRegion === '' || row['Region'] === filterRegion)
-          );
-        });
-
-        tableBody.innerHTML = '';
-
-        if (filteredData.length === 0) {
-          noResults.style.display = 'block';
-          return;
-        } else {
-          noResults.style.display = 'none';
-        }
-
-        filteredData.forEach(row => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${highlightText(row['English'], filterText)}</td>
-            <td>${highlightText(row['Definition (English)'], filterText)}</td>
-            <td>${highlightText(row['Definition(Hausa)'], filterText)}</td>
-            <td>${highlightText(row['Hausa'], filterText)}</td>
-            <td>${row['Region']}</td>
-            <td>${formatOntologyLink(row['Ontology Links'])}</td>
-          `;
-          tableBody.appendChild(tr);
-        });
-      }
-
-      // Event listeners
-      document.getElementById('homeTab').addEventListener('click', () => switchSection('home'));
-      document.getElementById('glossaryTab').addEventListener('click', () => switchSection('glossary'));
-      document.getElementById('resourcesTab').addEventListener('click', () => switchSection('resources'));
-      document.getElementById('aboutTab').addEventListener('click', () => switchSection('about'));
-      landingSearchBtn.addEventListener('click', showGlossary);
-      searchInput.addEventListener('input', () => displayTable(glossaryData));
-      regionFilter.addEventListener('change', () => displayTable(glossaryData));
+    let filteredData = data.filter(row => {
+      const rowText = Object.values(row).join(' ');
+      return normalizeText(rowText).includes(filterText) &&
+             (filterRegion === '' || row['Region'] === filterRegion);
     });
-  </script>
+
+    tableBody.innerHTML = '';
+    if (filteredData.length === 0) {
+      noResults.style.display = 'block';
+      return;
+    } else {
+      noResults.style.display = 'none';
+    }
+
+    filteredData.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${row['English']}</td>
+        <td>${row['Definition (English)']}</td>
+        <td>${row['Definition(Hausa)']}</td>
+        <td>${row['Hausa']}</td>
+        <td>${row['Region']}</td>
+        <td>${row['Ontology Links']}</td>
+      `;
+      tableBody.appendChild(tr);
+    });
+  }
+
+  // Event listeners
+  document.getElementById('homeTab').addEventListener('click', () => switchSection('home'));
+  document.getElementById('glossaryTab').addEventListener('click', () => switchSection('glossary'));
+  document.getElementById('resourcesTab').addEventListener('click', () => switchSection('resources'));
+  document.getElementById('aboutTab').addEventListener('click', () => switchSection('about'));
+  landingSearchBtn.addEventListener('click', showGlossary);
+  searchInput.addEventListener('input', () => displayTable(glossaryData));
+  regionFilter.addEventListener('change', () => displayTable(glossaryData));
+});
+</script>
+
 </body>
 </html>
+
 
 
 

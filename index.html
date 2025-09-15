@@ -1,297 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hausa Medical Glossary</title>
-  <style>
-    /* ---- General ---- */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('hausa background.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #222;
-      font-size: 18px; /* bigger base font */
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #ffcc33;
-      padding: 15px 30px;
-      border-bottom: 2px solid #4CAF50;
-    }
-
-    header .logo { display: flex; align-items: center; }
-    header img { height: 60px; margin-right: 15px; }
-    header h1 { font-size: 2.4rem; margin: 0; color: #2c3e50; font-weight: bold; }
-
-    nav { display: flex; gap: 20px; }
-    nav button {
-      background: none; border: none; font-size: 1rem; font-weight: bold;
-      cursor: pointer; padding: 8px 12px; border-radius: 6px;
-    }
-    nav button.active, nav button:hover { background-color: #4CAF50; color: white; }
-
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.95);
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-
-    h2 { font-size: 2rem; margin-bottom: 20px; }
-    h3 { margin-top: 20px; color: #2c3e50; }
-
-    .search-box, input, select, .button {
-      font-size: 18px;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      background-color: #4CAF50;
-      color: white;
-      cursor: pointer;
-      padding: 12px 25px;
-    }
-    .button:hover { background-color: #45a049; }
-
-    #controls { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-
-    /* ---- Table ---- */
-    .table-wrapper { overflow-x: auto; margin-bottom: 20px; }
-    #glossaryTable { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      white-space: normal;
-      vertical-align: top;
-      box-sizing: border-box;
-    }
-    th { background-color: #4CAF50; color: white; cursor: pointer; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    tr:hover { background-color: #f1f1f1; }
-
-    /* column widths */
-    #glossaryTable th:nth-child(1) { width: 18%; }  /* English */
-    #glossaryTable th:nth-child(2) { width: 32%; }  /* Definition (English) */
-    #glossaryTable th:nth-child(3) { width: 22%; }  /* Definition (Hausa) */
-    #glossaryTable th:nth-child(4) { width: 12%; }  /* Hausa */
-    #glossaryTable th:nth-child(5) { width: 8%; }   /* Region */
-    #glossaryTable th:nth-child(6) { width: 8%; }   /* Ontology Links */
-    #glossaryTable td a { word-break: break-all; overflow-wrap: anywhere; display: inline-block; max-width: 100%; }
-
-    mark { background-color: yellow; }
-
-    .section { display: none; }
-    .active-section { display: block; }
-
-    .no-results { color: red; font-weight: bold; margin: 20px 0; }
-
-    .about-section { text-align: left; margin-top: 20px; }
-    .creator { display: flex; align-items: center; margin-top: 15px; }
-    .creator img { width: 120px; height: 120px; border-radius: 50%; margin-right: 20px; }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hausa Medical Glossary</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background: url('hausa background.png') no-repeat center center fixed; background-size: cover; color:#222; font-size:18px; }
+  header { display:flex; align-items:center; justify-content:space-between; background-color:#ffcc33; padding:15px 30px; border-bottom:2px solid #4CAF50; }
+  header .logo { display:flex; align-items:center; cursor:pointer; }
+  header img { height:60px; margin-right:15px; }
+  header h1 { font-size:2.4rem; margin:0; color:#2c3e50; font-weight:bold; }
+  nav { display:flex; gap:20px; }
+  nav button { background:none; border:none; font-size:1rem; font-weight:bold; cursor:pointer; padding:8px 12px; border-radius:6px; }
+  nav button.active, nav button:hover { background-color:#4CAF50; color:white; }
+  main { max-width:900px; margin:30px auto; padding:20px; background-color:rgba(255,255,255,0.95); border-radius:12px; box-shadow:0px 4px 12px rgba(0,0,0,0.15); text-align:left; }
+  h2 { font-size:2rem; margin-bottom:20px; }
+  h3 { margin-top:20px; color:#2c3e50; }
+  input, select, .search-box { font-size:18px; padding:12px; border-radius:8px; border:1px solid #ccc; margin-bottom:20px; }
+  .button { background-color:#4CAF50; color:white; cursor:pointer; padding:12px 25px; border-radius:8px; font-size:18px; }
+  .button:hover { background-color:#45a049; }
+  #controls { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:20px; }
+  .table-wrapper { overflow-x:auto; margin-bottom:20px; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { border:1px solid #ddd; padding:10px; text-align:left; vertical-align:top; }
+  th { background-color:#4CAF50; color:white; cursor:pointer; }
+  tr:nth-child(even) { background-color:#f9f9f9; }
+  tr:hover { background-color:#f1f1f1; }
+  td a { word-break: normal; display:inline-block; }
+  .section { display:none; }
+  .active-section { display:block; }
+  mark { background-color:yellow; }
+  .no-results { color:red; font-weight:bold; margin:20px 0; }
+  .about-section { text-align:left; margin-top:20px; }
+  .creator { display:flex; align-items:center; margin-top:15px; }
+  .creator img { width:120px; height:120px; border-radius:50%; margin-right:20px; }
+  .favorite { cursor:pointer; color:gold; font-size:20px; }
+  .favorited { color:orange; }
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="hausa logo.png" alt="Hausa Logo">
-      <h1>Hausa Medical Glossary</h1>
-    </div>
-    <nav>
-      <button id="homeTab" class="active">Home</button>
-      <button id="glossaryTab">Glossary</button>
-      <button id="resourcesTab">Resources</button>
-      <button id="aboutTab">About</button>
-    </nav>
-  </header>
+<header>
+  <div class="logo" id="logo">
+    <img src="hausa logo.png" alt="Hausa Logo">
+    <h1>Hausa Medical Glossary</h1>
+  </div>
+  <nav>
+    <button id="homeTab" class="active">Home</button>
+    <button id="glossaryTab">Glossary</button>
+    <button id="resourcesTab">Resources</button>
+    <button id="favoritesTab">Favorites</button>
+    <button id="aboutTab">About</button>
+  </nav>
+</header>
 
-  <main>
-    <!-- Home -->
-    <div id="home" class="section active-section">
-      <h2>Search Hausa Medical Terms</h2>
-      <input type="text" id="landingSearch" class="search-box" placeholder="Type to search...">
-      <br>
-      <button class="button" id="landingSearchBtn">Search Glossary</button>
-    </div>
+<main>
+  <!-- Home -->
+  <div id="home" class="section active-section">
+    <h2>Search Hausa Medical Terms</h2>
+    <input type="text" id="landingSearch" class="search-box" placeholder="Type to search...">
+    <br>
+    <button class="button" id="landingSearchBtn">Search Glossary</button>
+  </div>
 
-    <!-- Glossary -->
-    <div id="glossary" class="section">
-      <div id="controls">
-        <input type="text" id="searchInput" placeholder="Type to search...">
-        <select id="regionFilter">
-          <option value="">All Categories</option>
-        </select>
+  <!-- Glossary -->
+  <div id="glossary" class="section">
+    <div id="controls">
+      <input type="text" id="searchInput" placeholder="Type to search...">
+      <select id="regionFilter">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+    <div class="table-wrapper">
+      <table id="glossaryTable">
+        <thead>
+          <tr>
+            <th>Fav</th>
+            <th>English</th>
+            <th>Definition (English)</th>
+            <th>Definition (Hausa)</th>
+            <th>Hausa</th>
+            <th>Region</th>
+            <th>Ontology Links</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="noResults" class="no-results" style="display:none;">No matching terms found.</div>
+  </div>
+
+  <!-- Favorites -->
+  <div id="favorites" class="section">
+    <h2>My Favorites</h2>
+    <div class="table-wrapper">
+      <table id="favoritesTable">
+        <thead>
+          <tr>
+            <th>Fav</th>
+            <th>English</th>
+            <th>Definition (English)</th>
+            <th>Definition (Hausa)</th>
+            <th>Hausa</th>
+            <th>Region</th>
+            <th>Ontology Links</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="noFavResults" class="no-results" style="display:none;">No favorite terms yet.</div>
+  </div>
+
+  <!-- Resources -->
+  <div id="resources" class="section">
+    <h2>Resources</h2>
+    <p>Downloadable posters and learning materials will be available here soon.</p>
+  </div>
+
+  <!-- About -->
+  <div id="about" class="section">
+    <h2>About</h2>
+    <div class="about-section">
+      <p>Welcome to our Hausa medical glossary! This website was created to make medical terminology accessible in Hausa, so that Hausa-speaking communities can better understand, learn, and use health information. Clear and accurate terminology is essential for effective communication in healthcare for patients, students, and professionals.</p>
+      <h3>What are Ontologies?</h3>
+      <p>An ontology is a structured framework that defines concepts and the relationships between them, so knowledge can be shared and used consistently.</p>
+      <h3>Why We Use Ontologies</h3>
+      <p>By using ontologies, this website makes information organized, searchable, and consistent. They provide a common definition of terms, ensuring clarity and consensus about what each term means and what it refers to. This consistency makes it simpler for others to contribute, share, and expand the knowledge base.</p>
+      <h3>Meet the Creator 👋</h3>
+      <div class="creator">
+        <img src="ikram_profile.jpeg" alt="Ikram Isa">
+        <p>Ikram Isa<br>This project was started by Ikram Isa, a biomedical engineer and medical physiology student passionate about bridging gaps in healthcare knowledge. By combining medical science with accessible language tools, the aim is to make health information clearer and more useful for Hausa-speaking communities.</p>
       </div>
-
-      <div class="table-wrapper">
-        <table id="glossaryTable">
-          <thead>
-            <tr>
-              <th data-column="English">English</th>
-              <th data-column="Definition (English)">Definition (English)</th>
-              <th data-column="Definition(Hausa)">Definition (Hausa)</th>
-              <th data-column="Hausa">Hausa</th>
-              <th data-column="Region">Region</th>
-              <th data-column="Ontology Links">Ontology Links</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <div id="noResults" class="no-results" style="display:none;">No matching terms found.</div>
     </div>
+  </div>
+</main>
 
-    <!-- Resources -->
-    <div id="resources" class="section">
-      <h2>Resources</h2>
-      <p>Downloadable posters and learning materials will be available here soon.</p>
-    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  const tableBody = document.querySelector('#glossaryTable tbody');
+  const favTableBody = document.querySelector('#favoritesTable tbody');
+  const searchInput = document.getElementById('searchInput');
+  const landingSearch = document.getElementById('landingSearch');
+  const landingSearchBtn = document.getElementById('landingSearchBtn');
+  const regionFilter = document.getElementById('regionFilter');
+  const noResults = document.getElementById('noResults');
+  const noFavResults = document.getElementById('noFavResults');
+  const logo = document.getElementById('logo');
 
-    <!-- About -->
-    <div id="about" class="section">
-      <h2>About 💛</h2>
-      <div class="about-section">
-        <p>Welcome to our <strong>Hausa medical glossary</strong>! 🌿 We made this site to help Hausa-speaking communities understand, learn, and use health information easily. Clear, friendly, and accurate terms help students, patients, and professionals communicate better.</p>
+  let glossaryData = [];
+  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-        <h3>What are Ontologies? 🗺️</h3>
-        <p>An ontology is a <strong>map of knowledge</strong> that shows how terms relate to each other, so everyone can share and use information consistently.</p>
+  function normalizeText(text){
+    if(!text) return "";
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ƙ/g,"k").replace(/ɓ/g,"b").replace(/ɗ/g,"d");
+  }
 
-        <h3>Why We Use Ontologies ✨</h3>
-        <p>Ontologies keep our glossary <strong>organized, searchable, and consistent</strong>. They provide common definitions, making it easy for others to contribute and expand our growing knowledge base!</p>
+  function switchSection(sectionId){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active-section'));
+    document.getElementById(sectionId).classList.add('active-section');
+    document.querySelectorAll('nav button').forEach(btn=>btn.classList.remove('active'));
+    if(document.getElementById(sectionId+'Tab')) document.getElementById(sectionId+'Tab').classList.add('active');
+  }
 
-        <h3>Meet the Creator 👋</h3>
-        <div class="creator">
-          <img src="ikram_profile.jpeg" alt="Ikram Isa">
-          <p>Hi! I’m <strong>Ikram Isa</strong>, a biomedical engineer and medical physiology student passionate about making health information clear and accessible. This project combines medical science with language tools to support Hausa-speaking communities.</p>
-        </div>
-      </div>
-    </div>
-  </main>
+  function showGlossary(){ switchSection('glossary'); displayTable(glossaryData); }
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const tableBody = document.querySelector('#glossaryTable tbody');
-      const searchInput = document.getElementById('searchInput');
-      const landingSearch = document.getElementById('landingSearch');
-      const landingSearchBtn = document.getElementById('landingSearchBtn');
-      const regionFilter = document.getElementById('regionFilter');
-      const noResults = document.getElementById('noResults');
-
-      let glossaryData = [];
-
-      // -----------------------------
-      // Normalize Hausa letters for inclusive search
-      function normalizeText(text) {
-        if (!text) return "";
-        return text
-          .toLowerCase()
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "")
-          .replace(/ƙ/g, "k")
-          .replace(/ɓ/g, "b")
-          .replace(/ɗ/g, "d");
-      }
-      // -----------------------------
-
-      // Section switch function
-      function switchSection(sectionId) {
-        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
-        document.getElementById(sectionId).classList.add('active-section');
-        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(sectionId + "Tab").classList.add('active');
-      }
-
-      // Show glossary from landing page
-      function showGlossary() {
-        switchSection('glossary');
-        displayTable(glossaryData);
-      }
-
-      // Populate region filter dropdown
-      function populateRegionFilter(data) {
-        const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
-        regions.forEach(region => {
-          const option = document.createElement('option');
-          option.value = region;
-          option.textContent = region;
-          regionFilter.appendChild(option);
-        });
-      }
-
-      // Display table with filtering
-      function displayTable(data) {
-        const filterText = normalizeText(searchInput.value || landingSearch.value);
-        const filterRegion = regionFilter.value;
-
-        const filteredData = data.filter(row => {
-          const rowText = Object.values(row).join(' ');
-          return normalizeText(rowText).includes(filterText) &&
-                 (filterRegion === '' || row['Region'] === filterRegion);
-        });
-
-        tableBody.innerHTML = '';
-        if (filteredData.length === 0) {
-          noResults.style.display = 'block';
-          return;
-        } else {
-          noResults.style.display = 'none';
-        }
-
-        filteredData.forEach(row => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${row['English']}</td>
-            <td>${row['Definition (English)']}</td>
-            <td>${row['Definition(Hausa)']}</td>
-            <td>${row['Hausa']}</td>
-            <td>${row['Region']}</td>
-            <td>${row['Ontology Links']}</td>
-          `;
-          tableBody.appendChild(tr);
-        });
-      }
-
-      // Load CSV data
-      Papa.parse('hausamedicalterms.csv', {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function(results) {
-          glossaryData = results.data;
-          populateRegionFilter(glossaryData);
-          displayTable(glossaryData);
-        }
-      });
-
-      // Event listeners
-      document.getElementById('homeTab').addEventListener('click', () => switchSection('home'));
-      document.getElementById('glossaryTab').addEventListener('click', () => switchSection('glossary'));
-      document.getElementById('resourcesTab').addEventListener('click', () => switchSection('resources'));
-      document.getElementById('aboutTab').addEventListener('click', () => switchSection('about'));
-      landingSearchBtn.addEventListener('click', showGlossary);
-      searchInput.addEventListener('input', () => displayTable(glossaryData));
-      regionFilter.addEventListener('change', () => displayTable(glossaryData));
-
+  function populateRegionFilter(data){
+    const regions = Array.from(new Set(data.map(r=>r['Region']).filter(Boolean))).sort();
+    regions.forEach(r=>{
+      const option = document.createElement('option'); option.value=r; option.textContent=r;
+      regionFilter.appendChild(option);
     });
-  </script>
+  }
+
+  function formatOntologyLink(url){
+    if(!url) return '';
+    const match = url.match(/obo\/([A-Z]+)_(\d+)/);
+    if(match) return `<a href="${url}" target="_blank">${match[1]}:${match[2]}</a>`;
+    return `<a href="${url}" target="_blank">${url}</a>`;
+  }
+
+  function highlight(text, term){
+    if(!text || !term) return text||'';
+    const regex = new RegExp(`(${term})`,'gi');
+    return text.replace(regex,'<mark>$1</mark>');
+  }
+
+  window.toggleFavorite = function(term){
+    if(favorites.includes(term)) favorites = favorites.filter(t=>t!==term);
+    else favorites.push(term);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    displayTable(glossaryData);
+  };
+
+  function displayTable(data){
+    const filterText = normalizeText(searchInput.value || landingSearch.value);
+    const filterRegion = regionFilter.value;
+    const filtered = data.filter(row=>{
+      const rowText = Object.values(row).join(' ');
+      return normalizeText(rowText).includes(filterText) && (filterRegion==='' || row['Region']===filterRegion);
+    });
+    tableBody.innerHTML='';
+    if(!filtered.length){ noResults.style.display='block'; return; } else { noResults.style.display='none'; }
+    filtered.forEach(row=>{
+      const isFav = favorites.includes(row['English']);
+      const tr=document.createElement('tr');
+      tr.innerHTML=`
+        <td class="favorite ${isFav?'favorited':''}" onclick="toggleFavorite('${row['English']}')">★</td>
+        <td>${highlight(row['English'], filterText)}</td>
+        <td>${highlight(row['Definition (English)'], filterText)}</td>
+        <td>${highlight(row['Definition(Hausa)'], filterText)}</td>
+        <td>${highlight(row['Hausa'], filterText)}</td>
+        <td>${row['Region']}</td>
+        <td>${formatOntologyLink(row['Ontology Links'])}</td>
+      `;
+      tr.onclick=(e)=>{ if(!e.target.classList.contains('favorite')) showTermDetail(row); };
+      tableBody.appendChild(tr);
+    });
+  }
+
+  function showTermDetail(row){
+    const main = document.querySelector('main');
+    main.innerHTML=`
+      <div>
+        <h2>${row['English']} (${row['Hausa']})</h2>
+        <p><strong>Definition (English):</strong> ${row['Definition (English)']}</p>
+        <p><strong>Definition (Hausa):</strong> ${row['Definition(Hausa)']}</p>
+        <p><strong>Region:</strong> ${row['Region']}</p>
+        <p><strong>Ontology Link:</strong> ${formatOntologyLink(row['Ontology Links'])}</p>
+        <button class="button" onclick="showGlossary()">Back to Glossary</button>
+      </div>
+    `;
+  }
+
+  function showFavorites(){
+    switchSection('favorites');
+    const favData = glossaryData.filter(row=>favorites.includes(row['English']));
+    favTableBody.innerHTML='';
+    if(!favData.length){ noFavResults.style.display='block'; return; } else { noFavResults.style.display='none'; }
+    favData.forEach(row=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML=`
+        <td class="favorite favorited" onclick="toggleFavorite('${row['English']}')">★</td>
+        <td>${row['English']}</td>
+        <td>${row['Definition (English)']}</td>
+        <td>${row['Definition(Hausa)']}</td>
+        <td>${row['Hausa']}</td>
+        <td>${row['Region']}</td>
+        <td>${formatOntologyLink(row['Ontology Links'])}</td>
+      `;
+      tr.onclick=(e)=>{ if(!e.target.classList.contains('favorite')) showTermDetail(row); };
+      favTableBody.appendChild(tr);
+    });
+  }
+
+  Papa.parse('hausamedicalterms.csv',{
+    download:true, header:true, skipEmptyLines:true,
+    complete: results => { glossaryData = results.data; populateRegionFilter(glossaryData); displayTable(glossaryData); }
+  });
+
+  searchInput.addEventListener('input', ()=>displayTable(glossaryData));
+  landingSearchBtn.addEventListener('click', ()=>showGlossary());
+  logo.addEventListener('click', ()=>switchSection('home'));
+  document.getElementById('homeTab').addEventListener('click', ()=>switchSection('home'));
+  document.getElementById('glossaryTab').addEventListener('click', ()=>switchSection('glossary'));
+  document.getElementById('resourcesTab').addEventListener('click', ()=>switchSection('resources'));
+  document.getElementById('aboutTab').addEventListener('click', ()=>switchSection('about'));
+  document.getElementById('favoritesTab').addEventListener('click', ()=>showFavorites());
+});
+</script>
 </body>
 </html>
+
 
 
 

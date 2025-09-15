@@ -156,6 +156,7 @@
     .creator { display: flex; align-items: center; margin-top: 15px; }
     .creator img { width: 120px; height: 120px; border-radius: 50%; margin-right: 20px; }
 
+    #termDetail { display: none; text-align: left; }
   </style>
 </head>
 <body>
@@ -205,6 +206,12 @@
       </table>
 
       <div id="noResults" class="no-results" style="display:none;">No matching terms found.</div>
+    </div>
+
+    <!-- Term Detail -->
+    <div id="termDetail" class="section">
+      <div id="termContent"></div>
+      <button class="button" onclick="backToGlossary()">Back to Glossary</button>
     </div>
 
     <!-- Resources -->
@@ -258,6 +265,14 @@
       }
     });
 
+    function switchSection(sectionId) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+      document.getElementById(sectionId).classList.add('active-section');
+
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(sectionId + "Tab").classList.add('active');
+    }
+
     function populateRegionFilter(data) {
       const regions = Array.from(new Set(data.map(row => row['Region']).filter(Boolean))).sort();
       regions.forEach(region => {
@@ -281,18 +296,26 @@
       return `<a href="${url}" target="_blank">${url}</a>`;
     }
 
+    function showGlossary() {
+      switchSection('glossary');
+      displayTable(glossaryData);
+    }
+
     function showTermDetail(row) {
-      const main = document.querySelector('main');
-      main.innerHTML = `
-        <div>
-          <h2>${row['English']} (${row['Hausa']})</h2>
-          <p><strong>Definition (English):</strong> ${row['Definition (English)']}</p>
-          <p><strong>Definition (Hausa):</strong> ${row['Definition(Hausa)']}</p>
-          <p><strong>Region:</strong> ${row['Region']}</p>
-          <p><strong>Ontology Link:</strong> ${formatOntologyLink(row['Ontology Links'])}</p>
-          <button class="button" onclick="displayTable(glossaryData)">Back to Glossary</button>
-        </div>
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active-section'));
+      document.getElementById('termDetail').classList.add('active-section');
+
+      document.getElementById('termContent').innerHTML = `
+        <h2>${row['English']} (${row['Hausa']})</h2>
+        <p><strong>Definition (English):</strong> ${row['Definition (English)']}</p>
+        <p><strong>Definition (Hausa):</strong> ${row['Definition(Hausa)']}</p>
+        <p><strong>Region:</strong> ${row['Region']}</p>
+        <p><strong>Ontology Link:</strong> ${formatOntologyLink(row['Ontology Links'])}</p>
       `;
+    }
+
+    function backToGlossary() {
+      switchSection('glossary');
     }
 
     function displayTable(data) {
@@ -309,4 +332,34 @@
           (filterRegion === '' || row['Region'] === filterRegion)
         );
       });
+
+      tableBody.innerHTML = '';
+      if (filteredData.length === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        filteredData.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${highlightText(row['English'], filterText)}</td>
+            <td>${highlightText(row['Definition (English)'], filterText)}</td>
+            <td>${highlightText(row['Definition(Hausa)'], filterText)}</td>
+            <td>${highlightText(row['Hausa'], filterText)}</td>
+            <td>${row['Region']}</td>
+            <td>${formatOntologyLink(row['Ontology Links'])}</td>
+          `;
+          tr.onclick = () => showTermDetail(row);
+          tableBody.appendChild(tr);
+        });
+      }
+    }
+
+    // live search
+    searchInput.addEventListener('input', () => displayTable(glossaryData));
+    landingSearch.addEventListener('input', () => displayTable(glossaryData));
+    regionFilter.addEventListener('change', () => displayTable(glossaryData));
+  </script>
+</body>
+</html>
+
 

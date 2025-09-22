@@ -11,10 +11,11 @@ Palm,The central portion of the inner surface of the hand. The skin for this sec
 Plantar foot,The bottom of the foot. The skin for this portion of the foot is thicker.,"ƙasan kafa, inda fatar wurin tafi kawri a duka kafar",Tafin ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0008338
 Bone marrow,"A soft fatty substance in the cavities of bones, in which blood cells are produced",Wani ruwa a cikin ƙashi da ke haifar da kwayoyin halitun da suke zama jini ,Laka ,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0002371
 Heart,A highly muscular organ found in the center of the chest (sligltly to the left) which pumps oxygenated blood to the systemic circulation and deoxygenated blood to the lungs to get oxygenated. ,Wani sashe na jiki a tsakiyar kirji mai tura jini mai sinadirin Oxygen zuwa ragowan mangarorin jiki kuma yake tura jini marasa Oxygen zuwa hunhun.,Zuciya,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0000948
-Throat,,,Makogwaro,Neck,http://purl.obolibrary.org/obo/UBERON_0000341
-Lip,,,Leɓe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001833
-Tongue,,,Harshe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001723
-Tooth,,,Haƙori,"Head, mouth",http://purl.obolibrary.org/obo/BTO_0000397
+Throat,A muscular structure in the neck that provides a passage for air and food.  ,Wani bututu mai tsoka a cikin wuya da ke bada wuri domin iska da abinci su wuce.,Makogwaro,Neck,http://purl.obolibrary.org/obo/UBERON_0000341
+Lip,One of the two soft tissues in thf upper and lower edges of the mouth.,Naman da ke sama da kasan yankan baki.,Leɓe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001833
+Tongue,An organ in the lower mouth that aid in speech and digestion.,Wani tsoka a cikin ƙasan baki da ke taimakawa a wajen magana da sarrafa abinci.,Harshe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001723
+Tooth,The bones that pertrude from the gums of the mouth that help with breaking down food.,ƙashin da ke fituwa daga cikin dadashin baki da ke taimakawa a wajen dagargaza abinci.,Haƙori,"Head, mouth",http://purl.obolibrary.org/obo/BTO_0000397
+Gums,The soft tissues that surround the upper and low lower jaw in the mouth.,Naman da ke rufe ƙashin haɓan da ke sama da ƙasan cikin baki. ,,,http://purl.obolibrary.org/obo/UBERON_0001828
 Nose,,,Hanci,Head ,http://purl.obolibrary.org/obo/UBERON_0000004
 Eye,,,Ido,Head,http://purl.obolibrary.org/obo/UBERON_0000970
 Eyebrow,,,Gira,Head,http://purl.obolibrary.org/obo/UBERON_0010163

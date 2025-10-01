@@ -1,109 +1,108 @@
 English,Definition (English),Definition(Hausa),Hausa,Region,Ontology Links
-Ribs,"A series of slender curved bones articulated in pairs to the spine (twelve pairs in humans), protecting the thoracic cavity and its organs.",Wasu siraran ƙasusuwa guda 12 waɗanda ke haɗa kashin kirji da kashin baya domin kare abubuwan da ke cikin kirjin.,Haƙar'ari,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0002228
-Lungs,"The foundational organs of the respiratory system, whose most basic function is to facilitate gas exchange from the environment into the bloodstream.",Wani sashe na jiki dake taimakawa numfashi. Shi ne wurin da ake cire CO2 daga kwayoyin halitan jini ake sa O2 dan a turawa ragowar jikin.,Hunhu,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0002048
-Kidney,The organ responsible for filtering and removing waste and water from the body. Alsohelps with balancing electrolyte concentrations in the body.,"Wani sashe na jiki da ke taimakaway a wajen tace ƙazantar da ruwa da za'a fitar ta hanyar fitsari, da kuma daidaita su electrolytes din cikin jiki",ƙoda,"Abdominal cavital, retroperitoneal cavity",http://purl.obolibrary.org/obo/UBERON_0002113
-Liver,The organ responsible for filtering the blood and secrting bile to aid in food digestion.,Wani sashe na jiki da ke tace jini kuma yake taimakawa a wajen zubar da sinadarin bile domin narkar da abinci.,Hanta,"Abdominal cavity, peritoneal cavity",http://purl.obolibrary.org/obo/UBERON_0002107
-Leg,The limb in the lower body between the hip and ankles.   ,Wani sassan jiki wanda yake tsakanin gwiwar ƙafa da idon sawu.,ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0000978
+Ribs,An intersegmental rod-shaped bone that forms in the peritoneal membrane and attach to the vertebral parapophyses.,Wasu siraran ƙasusuwa guda 12 waɗanda ke haɗa kashin kirji da kashin baya domin kare abubuwan da ke cikin kirjin.,Haƙar'ari,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0002228
+Lungs,Respiration organ that develops as an outpocketing of the esophagus.,Wani sashe na jiki dake taimakawa numfashi. Shi ne wurin da ake cire CO2 daga kwayoyin halitan jini ake sa O2 dan a turawa ragowar jikin.,Hunhu,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0002048
+Kidney,"A paired organ of the urinary tract that produces urine and maintains bodily fluid homeostasis, blood pressure, pH levels, red blood cell production and skeleton mineralization.","Wani sashe na jiki da ke taimakaway a wajen tace ƙazantar da ruwa da za'a fitar ta hanyar fitsari, da kuma daidaita su electrolytes din cikin jiki",ƙoda,"Abdominal cavital, retroperitoneal cavity",http://purl.obolibrary.org/obo/UBERON_0002113
+Liver,"An exocrine gland which secretes bile and functions in metabolism of protein and carbohydrate and fat, synthesizes substances involved in the clotting of the blood, synthesizes vitamin A, detoxifies poisonous substances, stores glycogen, and breaks down worn-out erythrocytes[GO].",Wani sashe na jiki da ke tace jini kuma yake taimakawa a wajen zubar da sinadarin bile domin narkar da abinci.,Hanta,"Abdominal cavity, peritoneal cavity",http://purl.obolibrary.org/obo/UBERON_0002107
+Leg,The portion of the hindlimb that contains both the stylopod and zeugopod.,Wani sassan jiki wanda yake tsakanin gwiwar ƙafa da idon sawu.,ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0000978
 Thigh,The limbs in the lower body between the hip and the knee.,Wani sassan jiki wanda yake tsakanin ƙugu da gwiwar ƙafa,Cinya,Lower body,"http://purl.obolibrary.org/obo/NCIT_C33763, http://purl.obolibrary.org/obo/UBERON_0000376"
-Shin,The anterior (front) of the leg between the knee and ankle.,Gaban ƙafa tsakanin gwiwar ƙafa da idon sawu.,Kasangalali,Lower body,http://purl.obolibrary.org/obo/UBERON_8480049
-Calf,The posterior (back) of the leg between the knee and ankle.,Bayan ƙafa tsakanin gwiwar ƙafa da idon sawu.,Digadigi,Lower body,http://purl.obolibrary.org/obo/UBERON_8480048
-Palm,The central portion of the inner surface of the hand. The skin for this section of the hand is thicker.,"Tsakiyar hannu, inda fatar wurin tafi ko ina kawri a hannun.",Tafin hanu,Upper body,http://purl.obolibrary.org/obo/UBERON_0008878
-Plantar foot,The bottom of the foot. The skin for this portion of the foot is thicker.,"ƙasan kafa, inda fatar wurin tafi kawri a duka kafar",Tafin ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0008338
-Bone marrow,"A soft fatty substance in the cavities of bones, in which blood cells are produced",Wani ruwa a cikin ƙashi da ke haifar da kwayoyin halitun da suke zama jini ,Laka ,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0002371
-Heart,A highly muscular organ found in the center of the chest (sligltly to the left) which pumps oxygenated blood to the systemic circulation and deoxygenated blood to the lungs to get oxygenated. ,Wani sashe na jiki a tsakiyar kirji mai tura jini mai sinadirin Oxygen zuwa ragowan mangarorin jiki kuma yake tura jini marasa Oxygen zuwa hunhun.,Zuciya,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0000948
-Throat,A muscular structure in the neck that provides a passage for air and food.  ,Wani bututu mai tsoka a cikin wuya da ke bada wuri domin iska da abinci su wuce.,Makogwaro,Neck,http://purl.obolibrary.org/obo/UBERON_0000341
-Lip,One of the two soft tissues in thf upper and lower edges of the mouth.,Naman da ke sama da kasan yankan baki.,Leɓe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001833
-Tongue,An organ in the lower mouth that aid in speech and digestion.,Wani tsoka a cikin ƙasan baki da ke taimakawa a wajen magana da sarrafa abinci.,Harshe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001723
-Tooth,The bones that pertrude from the gums of the mouth that help with breaking down food.,ƙashin da ke fituwa daga cikin dadashin baki da ke taimakawa a wajen dagargaza abinci.,Haƙori,"Head, mouth",http://purl.obolibrary.org/obo/BTO_0000397
-Gums,The soft tissues that surround the upper and low lower jaw in the mouth.,Naman da ke rufe ƙashin haɓan da ke sama da ƙasan cikin baki. ,Dadashi,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001828
-Nose,,,Hanci,Head ,http://purl.obolibrary.org/obo/UBERON_0000004
-Eye,,,Ido,Head,http://purl.obolibrary.org/obo/UBERON_0000970
-Eyebrow,,,Gira,Head,http://purl.obolibrary.org/obo/UBERON_0010163
-Eyelashes,,,Gashin Ido,Head,http://purl.obolibrary.org/obo/UBERON_0001702
-Ear,,,Kunne,Head ,http://purl.obolibrary.org/obo/UBERON_0001690
-Bone,,,ƙashi,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0001474
-Knee,,,Gwiwar ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0001465
-Elbow,,,Gwiwar hannu,Upper body,http://purl.obolibrary.org/obo/UBERON_0001461
-Skin,,,Fata,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0002097
-Hair,,,Gashi,Multiple Locations,http://purl.obolibrary.org/obo/BTO_0001501
-Nail,,,Farce,"Upper body, Lower body",http://purl.obolibrary.org/obo/UBERON_0001705
-Wrist,,,Wuyan hannu,Upper body,http://purl.obolibrary.org/obo/UBERON_0001491
-Ankle,,,Idon sawu,Lower body,http://purl.obolibrary.org/obo/UBERON_0001488
-Shoulder,,,Kafaɗa,Upper body,http://purl.obolibrary.org/obo/UBERON_0001467
-Hip,,,ƙugu,Lower body,http://purl.obolibrary.org/obo/UBERON_0001464
-Chest,,,ƙirji,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0001443
-Breast,,,Nono,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0000310
-Abdomen,,,Tumbi/ Na ciki,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000916
-Back,,,Baya,Back,http://purl.obolibrary.org/obo/NCIT_C13062
-Spine,,,ƙashin baya,Back,http://purl.obolibrary.org/obo/UBERON_0001130
-Skull,,,ƙoƙon kai,Head,http://purl.obolibrary.org/obo/UBERON_0003129
-Forehead,,,Goshi,Head,http://purl.obolibrary.org/obo/UBERON_0008200
-Cheek,,,Kumatu,Head,http://purl.obolibrary.org/obo/UBERON_0001567
-Chin,,,Haɓa,Head,http://purl.obolibrary.org/obo/UBERON_0008199
-Toes,,,Yatsun ƙafa,Lower body,http://purl.obolibrary.org/obo/BTO_0002348
-Finger,,,Yatsa,Upper Body,http://purl.obolibrary.org/obo/UBERON_0002389
-Blood,,,Jini,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0000178
-Saliva,,,Yawu,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001836
-Sweat,,,Gumi,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001089
-Sputum,,,Kaki,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0007311
-Urine,,,Fitsari,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001088
-Lymph,,,Ruwan Jijiya,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0002391
-Brain,,,Kwakwalwa,Head,http://purl.obolibrary.org/obo/UBERON_0000955
-Stomach,,,Ciki,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000945
-Small intestine,,,ƙaramin hanji,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002108
-Large intestine,,,Katan hanji,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000059
-Bladder,,,Mafitsara,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0018707
-Uterus,,,Mahaifa,"Abdominal cavity, reproductive system",http://purl.obolibrary.org/obo/UBERON_0000995
+Shin,The frontal aspect of the lower extremity that extends from the knee to the foot.,Gaban ƙafa tsakanin gwiwar ƙafa da idon sawu.,Kasangalali,Lower body,http://purl.obolibrary.org/obo/UBERON_8480049
+Calf,The posterior aspect of the lower extremity that extends from the knee to the foot.,Bayan ƙafa tsakanin gwiwar ƙafa da idon sawu.,Digadigi,Lower body,http://purl.obolibrary.org/obo/UBERON_8480048
+Palm,,"Tsakiyar hannu, inda fatar wurin tafi ko ina kawri a hannun.",Tafin hanu,Upper body,http://purl.obolibrary.org/obo/UBERON_0008878
+Plantar foot,The sole is the bottom of the foot.,"ƙasan kafa, inda fatar wurin tafi kawri a duka kafar",Tafin ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0008338
+Bone marrow,The soft tissue that fills the cavities of bones.,Wani ruwa a cikin ƙashi da ke haifar da kwayoyin halitun da suke zama jini ,Laka ,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0002371
+Heart,A myogenic muscular circulatory organ found in the vertebrate cardiovascular system composed of chambers of cardiac muscle. It is the primary circulatory organ.,Wani sashe na jiki a tsakiyar kirji mai tura jini mai sinadirin Oxygen zuwa ragowan mangarorin jiki kuma yake tura jini marasa Oxygen zuwa hunhun.,Zuciya,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0000948
+Throat,"In anatomy, the throat is the anterior part of the neck, in front of the vertebral column. It consists of the pharynx and larynx. An important feature of the throat is the epiglottis, a flap which separates the esophagus from the trachea and prevents inhalation of food or drink. The throat contains various blood vessels, various pharyngeal muscles, the trachea (windpipe) and the esophagus. The hyoid bone and the clavicle are the only bones located in the throat of mammals. It is sometimes considered a synonym for fauces. [WP,unvetted].",Wani bututu mai tsoka a cikin wuya da ke bada wuri domin iska da abinci su wuce.,Makogwaro,Neck,http://purl.obolibrary.org/obo/UBERON_0000341
+Lip,One of the two fleshy folds which surround the opening of the mouth.,Naman da ke sama da kasan yankan baki.,Leɓe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001833
+Tongue,A muscular organ in the floor of the mouth.,Wani tsoka a cikin ƙasan baki da ke taimakawa a wajen magana da sarrafa abinci.,Harshe,"Head, mouth",http://purl.obolibrary.org/obo/UBERON_0001723
+Tooth,1: One of the hard bony appendages that are borne on the jaws or in many of the lower vertebrates on other bones in the walls of the mouth or pharynx and serve especially for the prehension and mastication of food and as weapons of offense and defense. 2: Any of various usually hard and sharp processes especially about the mouth of an invertebrate.,ƙashin da ke fituwa daga cikin dadashin baki da ke taimakawa a wajen dagargaza abinci.,Haƙori,"Head, mouth",http://purl.obolibrary.org/obo/BTO_0000397
+Gums,The soft tissues that surround the upper and low lower jaw in the mouth.,Naman da ke rufe ƙashin haɓan da ke sama da ƙasan cikin baki. ,,,http://purl.obolibrary.org/obo/UBERON_0001828
+Nose,"The olfactory organ of vertebrates, consisting of nares, olfactory epithelia and the structures and skeletal framework of the nasal cavity.",,Hanci,Head ,http://purl.obolibrary.org/obo/UBERON_0000004
+Eye,An organ that detects light.,,Ido,Head,http://purl.obolibrary.org/obo/UBERON_0000970
+Eyebrow,"The eyebrow is an area of thick, delicate hairs above the eye that follows the shape of the lower margin of the brow ridges. Their main function is to protect the eye, but they are also important to human communication and facial expression. It is not uncommon for people to modify their eyebrows by means of hair addition or removal, make up, or piercings.",,Gira,Head,http://purl.obolibrary.org/obo/UBERON_0010163
+Eyelashes,Any of the hairs that grow at the edge of the upper or lower eyelid.,,Gashin Ido,Head,http://purl.obolibrary.org/obo/UBERON_0001702
+Ear,"Sense organ in vertebrates that is specialized for the detection of sound, and the maintenance of balance. Includes the outer ear and middle ear, which collect and transmit sound waves; and the inner ear, which contains the organs of balance and (except in fish) hearing. Also includes the pinna, the visible part of the outer ear, present in some mammals.",,Kunne,Head ,http://purl.obolibrary.org/obo/UBERON_0001690
+Bone,Skeletal element that is composed of bone tissue.,,ƙashi,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0001474
+Knee,A segment of the hindlimb that corresponds to the joint connecting a hindlimb stylopod and zeugopod.,,Gwiwar ƙafa,Lower body,http://purl.obolibrary.org/obo/UBERON_0001465
+Elbow,"The elbow is the region surrounding the elbow-joint-the ginglymus or hinge joint in the middle of the arm. Three bones form the elbow joint: the humerus of the upper arm, and the paired radius and ulna of the forearm. The bony prominence at the very tip of the elbow is the olecranon process of the ulna, and the inner aspect of the elbow is called the antecubital fossa. [WP,unvetted,human-specific].",,Gwiwar hannu,Upper body,http://purl.obolibrary.org/obo/UBERON_0001461
+Skin,The organ covering the body that consists of the dermis and epidermis.,,Fata,Multiple Locations,http://purl.obolibrary.org/obo/UBERON_0002097
+Hair,1: A slender threadlike outgrowth of the epidermis of an animal; especially: one of the usually pigmented filaments that form the characteristic coat of a mammal. 2: The hairy covering of an animal or a body part; especially: the coating of hairs on a human head.,,Gashi,Multiple Locations,http://purl.obolibrary.org/obo/BTO_0001501
+Nail,A horn-like keratin structure covering the dorsal aspect of the terminal phalanges of fingers and toes[WP].,,Farce,"Upper body, Lower body",http://purl.obolibrary.org/obo/UBERON_0001705
+Wrist,A joint connecting the forelimb zeugopod skeleton with the carpal skeleton.,,Wuyan hannu,Upper body,http://purl.obolibrary.org/obo/UBERON_0001491
+Ankle,A joint that connects the hindlimb autopod and zeugopod skeletons.,,Idon sawu,Lower body,http://purl.obolibrary.org/obo/UBERON_0001488
+Shoulder,"A subdivision of the pectoral complex consisting of the structures in the region of the shoulder joint (which connects the humerus, scapula and clavicle).",,Kafaɗa,Upper body,http://purl.obolibrary.org/obo/UBERON_0001467
+Hip,"The hip region is located lateral to the gluteal region (i.e. the buttock), inferior to the iliac crest, and overlying the greater trochanter of the thigh bone. In adults, three of the bones of the pelvis have fused into the hip bone which forms part of the hip region. The hip joint, scientifically referred to as the acetabulofemoral joint (art. coxae), is the joint between the femur and acetabulum of the pelvis and its primary function is to support the weight of the body in both static (e.g. standing) and dynamic (e.g. walking or running) postures. [WP,modified].",,ƙugu,Lower body,http://purl.obolibrary.org/obo/UBERON_0001464
+Chest,"Subdivision of trunk proper, which is demarcated from the neck by the plane of the superior thoracic aperture and from the abdomen internally by the inferior surface of the diaphragm and externally by the costal margin and associated with the thoracic vertebral column and ribcage and from the back of the thorax by the external surface of the posterolateral part of the rib cage, the anterior surface of the thoracic vertebral column and the posterior axillary lines; together with the abdomen and the perineum, it constitutes the trunk proper[FMA].",,ƙirji,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0001443
+Breast,The upper ventral region of the torso of an organism.,,Nono,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0000310
+Abdomen,The subdivision of the vertebrate body between the thorax and pelvis. The ventral part of the abdomen contains the abdominal cavity and visceral organs. The dorsal part includes the abdominal section of the vertebral column.,,Tumbi/ Na ciki,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000916
+Back,The dorsal area between the base of the neck and the sacrum.,,Baya,Back,http://purl.obolibrary.org/obo/NCIT_C13062
+Spine,Subdivision of skeletal system that consists of all the vertebra and associated skeletal elements and joints in the body[modified from VSAO].,,ƙashin baya,Back,http://purl.obolibrary.org/obo/UBERON_0001130
+Skull,Anatomical structure that is part of the head consisting entirely of cranium and mandible[WP].,,ƙoƙon kai,Head,http://purl.obolibrary.org/obo/UBERON_0003129
+Forehead,"The part of the face above the eyes[MESH]. In human anatomy, the forehead is the fore part of the head. It is, formally, an area of the head bounded by three features, two of the skull and one of the scalp. The top of the forehead is marked by the hairline, the edge of the area where hair on the scalp grows. The bottom of the forehead is marked by the supraorbital ridge, the bone feature of the skull above the eyes. The two sides of the forehead are marked by the temporal ridge, a bone feature that links the supraorbital ridge to the coronal suture line and beyond[WP].",,Goshi,Head,http://purl.obolibrary.org/obo/UBERON_0008200
+Cheek,"A fleshy subdivision of one side of the face bounded by an eye, ear and the nose.",,Kumatu,Head,http://purl.obolibrary.org/obo/UBERON_0001567
+Chin,A subdivision of the face that is the anteriormost part of the lower jaw region.,,Haɓa,Head,http://purl.obolibrary.org/obo/UBERON_0008199
+Toes,1. Any of the five digits of the foot. 2. The anterior part of a horse's hoof.,,Yatsun ƙafa,Lower body,http://purl.obolibrary.org/obo/BTO_0002348
+Finger,A digit that is part of a manus (hand).,,Yatsa,Upper Body,http://purl.obolibrary.org/obo/UBERON_0002389
+Blood,A fluid that is composed of blood plasma and erythrocytes.,,Jini,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0000178
+Saliva,"A fluid produced in the oral cavity by salivary glands, typically used in predigestion, but also in other functions.",,Yawu,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001836
+Sweat,Secretion produced by a sweat gland.,,Gumi,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001089
+Sputum,"Matter ejected from the lungs, bronchi, and trachea, through the mouth.",,Kaki,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0007311
+Urine,Excretion that is the output of a kidney.,,Fitsari,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0001088
+Lymph,Lymph is the fluid that is formed when interstitial fluid enters the conduits of the lymphatic system through lymph capillaries[WP].,,Ruwan Jijiya,Fluids & Tissue,http://purl.obolibrary.org/obo/UBERON_0002391
+Brain,"The brain is the center of the nervous system in all vertebrate, and most invertebrate, animals. Some primitive animals such as jellyfish and starfish have a decentralized nervous system without a brain, while sponges lack any nervous system at all. In vertebrates, the brain is located in the head, protected by the skull and close to the primary sensory apparatus of vision, hearing, balance, taste, and smell[WP].",,Kwakwalwa,Head,http://purl.obolibrary.org/obo/UBERON_0000955
+Stomach,"An expanded region of the vertebrate alimentary tract that serves as a food storage compartment and digestive organ. A stomach is lined, in whole or in part by a glandular epithelium.",,Ciki,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000945
+Small intestine,"Subdivision of digestive tract that connects the stomach to the large intestine and is where much of the digestion and absorption of food takes place (with the exception of ruminants). The mammalian small intestine is long and coiled and can be differentiated histologically into: duodenum, jejunem, ileum[WP,cjm,Kardong].",,ƙaramin hanji,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002108
+Large intestine,A subdivision of the digestive tract that connects the small intestine to the cloaca or anus. Lacks or has few villi[Kardong].,,Katan hanji,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0000059
+Bladder,A membranous sac in animals that serves as the receptacle of a liquid or contains gas.,,Mafitsara,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0018707
+Uterus,"Organ of metabolic interchange between fetus and mother, partly of embryonic origin and partly of maternal origin[GO]. The fetal portion of the placenta is known as the villous chorion. The maternal portion is known as the decidua basalis. The two portions are held together by anchoring villi that are anchored to the decidua basalis by the cytotrophoblastic shell.",,Mahaifa,"Abdominal cavity, reproductive system",http://purl.obolibrary.org/obo/UBERON_0000995
 Ovary,,,,"Abdominal cavity, reproductive system",http://purl.obolibrary.org/obo/UBERON_0000992
-Testis,,,Maraina,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000473
-Penis,,,Azzakari,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000989
-Pancreas,,,Fankiris,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0001264
-Spleen,,,Saifa,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002106
-Gallbladder,,,Maɗaciya/ Patsarmama,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002110
+Testis,A gonad of a male animal. A gonad produces and releases sperm.,,Maraina,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000473
+Penis,"An intromittent organ in certain biologically male organisms. In placental mammals, this also serves as the organ of urination.",,Azzakari,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000989
+Pancreas,An endoderm derived structure that produces precursors of digestive enzymes and blood glucose regulating hormones[GO].,,Fankiris,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0001264
+Spleen,The organ that functions to filter blood and to store red corpuscles and platelets.,,Saifa,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002106
+Gallbladder,An organ that aids digestion and stores bile produced by the liver[WP].,,Maɗaciya/ Patsarmama,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002110
 Pharynx,,,,Neck,http://purl.obolibrary.org/obo/UBERON_0006562
 Larynx,,,,Neck,http://purl.obolibrary.org/obo/UBERON_0001737
 Esophagus,,Bututu dake tura abinci daga makogwaro zuwa tunbi,,Neck,http://purl.obolibrary.org/obo/UBERON_0001043
 Trachea (Windpipe),,Bututu dake tura iska daga makogwaro zuwa hunhu,,Neck,http://purl.obolibrary.org/obo/UBERON_0003126
-Uvula,,,Tantani Makwallato,Neck,http://purl.obolibrary.org/obo/NCIT_C12232
+Uvula,The fleshy lobe that hangs at the back of the soft palate.,,Tantani Makwallato,Neck,http://purl.obolibrary.org/obo/NCIT_C12232
 Bronchus,,,,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0002185
 Diaphragm,The dome-shaped muscle separating the thorax from the abdomen in mammals,Wani tsoka dake raba kirji da ciki kuma yake taimakawa numfashi,,Thoracic cavity,http://purl.obolibrary.org/obo/UBERON_0001103
 Rectum,The final section of the large intestine,,,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0001052
-Anus,,,Dubura,Lower body,http://purl.obolibrary.org/obo/UBERON_0001245
+Anus,"Orifice at the opposite end of an animal's digestive tract from the mouth. Its function is to expel feces, unwanted semi-solid matter produced during digestion, which, depending on the type of animal, may be one or more of: matter which the animal cannot digest, such as bones; food material after all the nutrients have been extracted, for example cellulose or lignin; ingested matter which would be toxic if it remained in the digestive tract; and dead or excess gut bacteria and other endosymbionts.",,Dubura,Lower body,http://purl.obolibrary.org/obo/UBERON_0001245
 Prostate,,,,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0002367
-Private Parts,,,Al'aura,Reproductive system,http://purl.obolibrary.org/obo/CLAO_0000976
-Vagina,,,Farji,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000996
-Clitoris,,,Ɗan tsaka,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0002411
+Private Parts,"The anatomical system that is involved in copulation, fertilization and/or oviposition.",,Al'aura,Reproductive system,http://purl.obolibrary.org/obo/CLAO_0000976
+Vagina,"A fibromuscular tubular tract leading from the uterus to the exterior of the body in female placental mammals and marsupials, or to the cloaca in female birds, monotremes, and some reptiles[WP].",,Farji,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000996
+Clitoris,"The small, erectile body located at the anterior end of the vulva.",,Ɗan tsaka,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0002411
 Cervix,The narrow passage forming the lower end of the uterus.,,,Reproductive system,http://purl.obolibrary.org/obo/UBERON_0000002
-Placenta,,,Mahaifa,"Abdominal cavity, Reproductive system",http://purl.obolibrary.org/obo/UBERON_0001987
-Umbilical cord,,,Igiyar cibiya,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002331
+Placenta,"Organ of metabolic interchange between fetus and mother, partly of embryonic origin and partly of maternal origin[GO]. The fetal portion of the placenta is known as the villous chorion. The maternal portion is known as the decidua basalis. The two portions are held together by anchoring villi that are anchored to the decidua basalis by the cytotrophoblastic shell.",,Mahaifa,"Abdominal cavity, Reproductive system",http://purl.obolibrary.org/obo/UBERON_0001987
+Umbilical cord,The connecting cord from the developing embryo to the placenta.,,Igiyar cibiya,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002331
 Cartilage,,,,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0002418
-Tendon,,,Kitse,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000043
-Ligament,,,Jijiya,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000211
-Muscle,,,Tsoka,Multiple locations,http://purl.obolibrary.org/obo/BTO_0000887
-Artery,,,Jijiyar tafiya da jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001637
-Vein,,,Jijiyar dawo da jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001638
-Capillary,,,ƙaramin Bututun Jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001982
-Nerve,,,Jijiya,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001021
-Joint,,,Gaɓoɓi,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000982
+Tendon,A mass of closely packed fat cells (adipose tissue) surrounded by fibrous tissue septa[TMD].,,Kitse,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000043
+Ligament,"An enclosed, cable-like bundle of axons in the peripheral nervous system originating in a nerve root in the central nervous system (or a condensed nervous structure) connecting with peripheral structures.",,Jijiya,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000211
+Muscle,A body tissue consisting of long cells that contract when stimulated and produce motion.,,Tsoka,Multiple locations,http://purl.obolibrary.org/obo/BTO_0000887
+Artery,An epithelial tube or tree of tibes that transports blood away from the heart[modified from AEO definition].,,Jijiyar tafiya da jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001637
+Vein,Any of the tubular branching vessels that carry blood from the capillaries toward the heart.,,Jijiyar dawo da jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001638
+Capillary,Any of the smallest blood vessels connecting arterioles with venules.,,ƙaramin Bututun Jini,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001982
+Nerve,"An enclosed, cable-like bundle of axons in the peripheral nervous system originating in a nerve root in the central nervous system (or a condensed nervous structure) connecting with peripheral structures.",,Jijiya,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0001021
+Joint,"Anatomical structure that consists of two or more adjacent skeletal structures, which may be interconnected by various types of tissue[VSAO].",,Gaɓoɓi,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0000982
 Limbs,,,,"Upper body, Lower body",http://purl.obolibrary.org/obo/UBERON_0000026
-Fat,,,Kitse,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0003916
-Tube,,,Bututu,Descriptive Terms,http://purl.obolibrary.org/obo/UBERON_0000025
-Spinal cord,,,Jijiyar ƙashin Baya,Back,http://purl.obolibrary.org/obo/UBERON_0002240
+Fat,A mass of closely packed fat cells (adipose tissue) surrounded by fibrous tissue septa[TMD].,,Kitse,Multiple locations,http://purl.obolibrary.org/obo/UBERON_0003916
+Tube,Any hollow cylindrical anatomical structure containing a lumen through which substances are transported.,,Bututu,Descriptive Terms,http://purl.obolibrary.org/obo/UBERON_0000025
+Spinal cord,"Part of the central nervous system located in the vertebral canal continuous with and caudal to the brain; demarcated from brain by plane of foramen magnum. It is composed of an inner core of gray matter in which nerve cells predominate, and an outer layer of white matter in which myelinated nerve fibers predominate, and surrounds the central canal. (CUMBO).",,Jijiyar ƙashin Baya,Back,http://purl.obolibrary.org/obo/UBERON_0002240
 Appendix,"A small, finger-like pouch attached to the large intestine",Wani bututu dake ƙarshen babban hanji,,Abdominal cavity,http://purl.obolibrary.org/obo/NCIT_C12380
 Peritoneum,"A continuous, thin, smooth membrane that lines the abdominal and pelvic cavities and covers the organs within them",Wani nama da yake saman kayan ciki da ƙashin kwankwaso,,Abdominal cavity,http://purl.obolibrary.org/obo/UBERON_0002358
-Renal System,,,Mataciyar Fitsari,Systems,http://purl.obolibrary.org/obo/UBERON_0001008
-Skeletal System,,,Kwanrangwal Din Jiki,Systems,http://purl.obolibrary.org/obo/UBERON_0001434
-Nervous Sytem,,,Tsari na Kawkwalwa da Jijiyoyin Ta,Systems,http://purl.obolibrary.org/obo/UBERON_0001016
-Cardiovascular System,,,Tsari na Zuciya da Jini,Systems,http://purl.obolibrary.org/obo/UBERON_0004535
-Respitory System,,,Tsari na Numfashi,Systems,http://purl.obolibrary.org/obo/UBERON_0001004
-Digestive System,,,Tsari na Sarrafa Abinci,Systems,http://purl.obolibrary.org/obo/UBERON_0001007
-Reproductive System,,,Tsari na Halittun Haihuwa,Systems,http://purl.obolibrary.org/obo/UBERON_0000990
-Endocrine System,,,Tsari na Endocrine,Systems,http://purl.obolibrary.org/obo/UBERON_0000949
-Integumentary System," The body's outer covering, primarily composed of skin, hair, nails, and associated glands",,"Tsari na su fata, farce, da gashi",Systems,http://purl.obolibrary.org/obo/UBERON_0002416
-Lymphatic System,,,Tsari na Kariya,Systems,http://purl.obolibrary.org/obo/UBERON_0002465
-Cells,,,ƙwayoyin halitta,"Multiple Locations, Descriptive Terms",http://purl.obolibrary.org/obo/CL_0000000
-Cancer,,,"Ciwon kansa, ciwon daji",Disease,http://purl.obolibrary.org/obo/MONDO_0004992
+Renal System,"The renal system in an anatomical system that maintains fluid balance and contributes to electrolyte balance, acid/base balance, and disposal of nitrogenous waste products.",,Mataciyar Fitsari,Systems,http://purl.obolibrary.org/obo/UBERON_0001008
+Skeletal System,"Anatomical system that is a multi-element, multi-tissue anatomical cluster that consists of the skeleton and the articular system.",,Kwanrangwal Din Jiki,Systems,http://purl.obolibrary.org/obo/UBERON_0001434
+Nervous Sytem,"The nervous system is an organ system containing predominantly neuron and glial cells. In bilaterally symmetrical organism, it is arranged in a network of tree-like structures connected to a central body. The main functions of the nervous system are to regulate and control body functions, and to receive sensory input, process this information, and generate behavior [CUMBO].",,Tsari na Kawkwalwa da Jijiyoyin Ta,Systems,http://purl.obolibrary.org/obo/UBERON_0001016
+Cardiovascular System,Anatomical system that has as its parts the heart and blood vessels.,,Tsari na Zuciya da Jini,Systems,http://purl.obolibrary.org/obo/UBERON_0004535
+Respitory System,Functional system which consists of structures involved in respiration.,,Tsari na Numfashi,Systems,http://purl.obolibrary.org/obo/UBERON_0001004
+Digestive System,"Anatomical system that has as its parts the organs devoted to the ingestion, digestion, and assimilation of food and the discharge of residual wastes.",,Tsari na Sarrafa Abinci,Systems,http://purl.obolibrary.org/obo/UBERON_0001007
+Reproductive System,Anatomical system that has as its parts the organs concerned with reproduction.,,Tsari na Halittun Haihuwa,Systems,http://purl.obolibrary.org/obo/UBERON_0000990
+Endocrine System,Anatomical system that consists of the glands and parts of glands that produce endocrine secretions and help to integrate and control bodily metabolic activity.,,Tsari na Endocrine,Systems,http://purl.obolibrary.org/obo/UBERON_0000949
+Integumentary System,"Connected anatomical system that forms a barrier between an animal and its environment. In vertebrates, the integumental system consists of the epidermis, dermis plus associated glands and adnexa such as hair and scales. In invertebrates, the integumental system may include cuticle.",,"Tsari na su fata, farce, da gashi",Systems,http://purl.obolibrary.org/obo/UBERON_0002416
+Lymphatic System,"The lymphatic system in vertebrates is a network of conduits that carry a clear fluid called lymph. It also includes the lymphoid tissue through which the lymph travels. Lymphoid tissue is found in many organs, particularly the lymph nodes, and in the lymphoid follicles associated with the digestive system such as the tonsils. The system also includes all the structures dedicated to the circulation and production of lymphocytes, which includes the spleen, thymus, bone marrow and the lymphoid tissue associated with the digestive system[WP].",,Tsari na Kariya,Systems,http://purl.obolibrary.org/obo/UBERON_0002465
+Cells,A material entity of anatomical origin (part of or deriving from an organism) that has as its parts a maximally connected cell compartment surrounded by a plasma membrane.,,ƙwayoyin halitta,"Multiple Locations, Descriptive Terms",http://purl.obolibrary.org/obo/CL_0000000
+Cancer,"A tumor composed of atypical neoplastic, often pleomorphic cells that invade other tissues. Malignant neoplasms often metastasize to distant anatomic sites and may recur after excision. The most common malignant neoplasms are carcinomas (adenocarcinomas or squamous cell carcinomas), Hodgkin and non-Hodgkin lymphomas, leukemias, melanomas, and sarcomas.",,"Ciwon kansa, ciwon daji",Disease,http://purl.obolibrary.org/obo/MONDO_0004992
 "Chemical, Substance, Nutrient",,,Sinadari,Descriptive Terms,"http://purl.obolibrary.org/obo/CHEBI_59999, http://purl.obolibrary.org/obo/CHEBI_33284"
-Protein,,,Furotin,Tissue Componenets,http://purl.obolibrary.org/obo/CHEBI_36080
-Sleep,,,Barci,Condition,http://purl.obolibrary.org/obo/GO_0030431
-
+Protein,A biological macromolecule minimally consisting of one polypeptide chain synthesized at the ribosome.,,Furotin,Tissue Componenets,http://purl.obolibrary.org/obo/CHEBI_36080
+Sleep,"Any process in which an organism enters and maintains a periodic, readily reversible state of reduced awareness and metabolic activity. Usually accompanied by physical relaxation, the onset of sleep in humans and other mammals is marked by a change in the electrical activity of the brain.",,Barci,Condition,http://purl.obolibrary.org/obo/GO_0030431
